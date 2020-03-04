@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Basic -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Mobile Metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Site Metas -->
+<title>QuickCloud - Hosting Responsive HTML5 Template</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Site Icons -->
+<link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/static/bootstrap.min.css">
+<!-- Site CSS -->
+<link rel="stylesheet" href="/static/style.css">
+<!-- ALL VERSION CSS -->
+<link rel="stylesheet" href="/static/versions.css">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="/static/responsive.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="/static/custom.css">
+
+<!-- Modernizer for Portfolio -->
+<script src="/static/modernizer.js"></script>
+
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body class="host_version">
+
+	<!-- Modal -->
+	<!--<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header tit-up">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Customer Login</h4>
+			</div>
+			<div class="modal-body customer-box">
+				
+				<ul class="nav nav-tabs">
+					<li><a class="active" href="#Login" data-toggle="tab">Login</a></li>
+					<li><a href="#Registration" data-toggle="tab">Registration</a></li>
+				</ul>
+				
+				<div class="tab-content">
+					<div class="tab-pane active" id="Login">
+						<form role="form" class="form-horizontal">
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input class="form-control" id="email1" placeholder="Name" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input class="form-control" id="exampleInputPassword1" placeholder="Email" type="email">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-10">
+									<button type="submit" class="btn btn-light btn-radius btn-brd grd1">
+										Submit
+									</button>
+									<a class="for-pwd" href="javascript:;">Forgot your password?</a>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="tab-pane" id="Registration">
+						<form role="form" class="form-horizontal">
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input class="form-control" placeholder="Name" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input class="form-control" id="email" placeholder="Email" type="email">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input class="form-control" id="mobile" placeholder="Mobile" type="email">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input class="form-control" id="password" placeholder="Password" type="password">
+								</div>
+							</div>
+							<div class="row">							
+								<div class="col-sm-10">
+									<button type="button" class="btn btn-light btn-radius btn-brd grd1">
+										Save &amp; Continue
+									</button>
+									<button type="button" class="btn btn-light btn-radius btn-brd grd1">
+										Cancel</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	  </div>
+	</div>-->
+
+	<!-- LOADER -->
+	<div id="preloader">
+		<div class="loader-container">
+			<div class="progress-br float shadow">
+				<div class="progress__item"></div>
+			</div>
+		</div>
+	</div>
+	<!-- END LOADER -->
+
+	<!-- Start header -->
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<h1><strong>
+						<font color="white">Welcome Admin</font><!--ivide lotha police inte name veranam not admin--> 
+					</strong></h1>
+				<!--<a class="navbar-brand" href="index.html">
+					<img src="images/logo-hosting.png" alt="" />
+				</a>-->
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host"
+					aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-host">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a class="nav-link" onclick="index()">Home</a></li>
+						<li class="nav-item"><a class="nav-link" onclick="emergency()">Emergencey cases</a></li>
+						<li class="nav-item active"><a class="nav-link" onclick="upload_cases()">Upload Cases</a></li>
+						<!--<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Hosting </a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="hosting.html">Web Hosting </a>
+								<a class="dropdown-item" href="hosting.html">WordPress Hosting </a>
+								<a class="dropdown-item" href="hosting.html">Cloud Server </a>
+								<a class="dropdown-item" href="hosting.html">Reseller Package </a>
+								<a class="dropdown-item" href="hosting.html">Dedicated Hosting </a>
+							</div>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="domain.html">Domain</a></li>
+						<li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>-->
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a class="hover-btn-new log" onclick="logout()" data-toggle="modal"
+								data-target="#login"><span>Logout</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- End header -->
+
+	<div class="all-title-box">
+		<div class="container text-center">
+			<h1>Upload Cases<span class="m_1">Upload Missing and Wanted list.</span></h1>
+		</div>
+	</div>
+
+	<div id="overviews" class="section lb">
+		<div class="container">
+			<div class="section-title row text-center">
+				<div class="col-md-8 offset-md-2">
+					<h3>Upload Cases</h3>
+					<!--<p class="lead">Lorem Ipsum dolroin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem!</p>-->
+				</div>
+			</div>
+		</div>
+		<center>
+
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="icon-wrapper wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
+					<center>
+						<h3>Upload Missing Case</h3>
+					</center>
+					<form role="form" class="form-horizontal">
+
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input class="form-control" id="name_missing" placeholder="Name" type="text" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input class="form-control" id="location_missing" placeholder="Location" type="text"
+									required>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input class="form-control" id="image_missing" type="file" required>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-10">
+								<button type="button" onclick="upload_missing()"
+									class="btn btn-light btn-radius btn-brd grd1">
+									Upload
+								</button>
+					</form>
+				</div>
+			</div>
+	</div>
+	</div>
+
+	</center>
+	<center>
+		<br>
+		<br>
+
+		<div class="col-md-4 col-sm-6 col-xs-12">
+			<div class="icon-wrapper wow fadeIn" data-wow-duration="1s" data-wow-delay="0.6s">
+				<center>
+					<h3>Upload Wanted Case</h3>
+				</center>
+				<form role="form" class="form-horizontal">
+
+					<div class="form-group">
+						<div class="col-sm-12">
+							<input class="form-control" id="name_wanted" placeholder="Name" type="text" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-12">
+							<input class="form-control" id="bounty_wanted" placeholder="Bounty" type="text" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-12">
+							<input class="form-control" id="image_wanted" type="file" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-10">
+							<button type="button" onclick="upload_wanted()"
+								class="btn btn-light btn-radius btn-brd grd1">
+								Upload
+							</button>
+				</form>
+			</div>
+		</div>
+
+	</center>
+	</div>
+
+	</div>
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-xs-12">
+					<div class="widget clearfix">
+						<div class="widget-title">
+							<h3>About US</h3>
+						</div>
+						<p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus
+							bibendum. Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis
+							dis montes.</p>
+						<p>Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis dis montes.
+						</p>
+					</div><!-- end clearfix -->
+				</div><!-- end col -->
+
+				<div class="col-lg-4 col-md-4 col-xs-12">
+					<div class="widget clearfix">
+						<div class="widget-title">
+							<h3>Information Link</h3>
+						</div>
+						<ul class="footer-links">
+							<li><a href="#">Home</a></li>
+							<li><a href="#">Blog</a></li>
+							<li><a href="#">Pricing</a></li>
+							<li><a href="#">About</a></li>
+							<li><a href="#">Faq</a></li>
+							<li><a href="#">Contact</a></li>
+						</ul><!-- end links -->
+					</div><!-- end clearfix -->
+				</div><!-- end col -->
+
+				<div class="col-lg-4 col-md-4 col-xs-12">
+					<div class="widget clearfix">
+						<div class="widget-title">
+							<h3>Contact Details</h3>
+						</div>
+
+						<ul class="footer-links">
+							<li><a href="mailto:#">info@yoursite.com</a></li>
+							<li><a href="#">www.yoursite.com</a></li>
+							<li>PO Box 16122 Collins Street West Victoria 8007 Australia</li>
+							<li>+61 3 8376 6284</li>
+						</ul><!-- end links -->
+					</div><!-- end clearfix -->
+				</div><!-- end col -->
+
+			</div><!-- end row -->
+		</div><!-- end container -->
+	</footer><!-- end footer -->
+
+	<div class="copyrights">
+		<div class="container">
+			<div class="footer-distributed">
+				<div class="footer-left">
+					<p class="footer-company-name">All Rights Reserved. &copy; 2018 <a href="#">QuickCloud</a> Design By
+						: <a href="https://html.design/">html design</a></p>
+				</div>
+
+				<div class="footer-right">
+					<ul class="footer-links-soi">
+						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="#"><i class="fa fa-github"></i></a></li>
+						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+						<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+					</ul><!-- end links -->
+				</div>
+			</div>
+		</div><!-- end container -->
+	</div><!-- end copyrights -->
+
+	<a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
+
+	<!-- ALL JS FILES -->
+	<script src="/static/all.js"></script>
+	<!-- ALL PLUGINS -->
+	<script src="/static/custom.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-analytics.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-storage.js"></script>
+
+	<script>
+		// Your web app's Firebase configuration
+		var firebaseConfig = {
+			apiKey: "AIzaSyCEvPHsE99y0sTccqPpbTMrpzxsvIo8d3c",
+			authDomain: "crime-scene-bcbf1.firebaseapp.com",
+			databaseURL: "https://crime-scene-bcbf1.firebaseio.com",
+			projectId: "crime-scene-bcbf1",
+			storageBucket: "crime-scene-bcbf1.appspot.com",
+			messagingSenderId: "1000042167224",
+			appId: "1:1000042167224:web:0d809f9f1e27ca63bd6d4d",
+			measurementId: "G-24KDJT144S"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+		firebase.analytics();
+
+		function upload_missing() {
+			var name = document.getElementById('name_missing').value
+			var locn = document.getElementById('location_missing').value
+			var photo = document.getElementById('image_missing').files[0]
+
+			var filename = photo.name;
+			var firestore = firebase.storage()
+			var storageRef = firestore.ref()
+			var imageRef = storageRef.child('images/notice/' + filename)
+			imageRef.put(photo).then(function (snap) {
+				console.log("Uploaded file")
+			}, function (error) {
+				console.log(error)
+			})
+
+			var req = new XMLHttpRequest()
+			req.open("POST", 'http://localhost:8080/add_notice', true)
+			req.setRequestHeader("Content-Type", "application/json");
+			var data = JSON.stringify({ 'person_name':name,'file_name':filename,'up_location':locn, 'notice_type':'missing' })
+			req.onreadystatechange = (function () {
+				if (req.readyState === 4 && req.status === 200) {
+					var resp = req.responseText
+					console.log(resp)
+					if(resp == 'uploaded notice')
+					upload_cases()
+					else
+					alert("Upload failed")
+				}
+			})
+			console.log(data)
+			req.send(data)
+		}
+
+		function upload_wanted(){
+			var name = document.getElementById('name_wanted').value
+			var bounty = document.getElementById('bounty_wanted').value
+			var photo = document.getElementById('image_wanted').files[0]
+
+			var filename = photo.name;
+			var firestore = firebase.storage()
+			var storageRef = firestore.ref()
+			var imageRef = storageRef.child('images/notice/' + filename)
+			imageRef.put(photo).then(function (snap) {
+				console.log("Uploaded file")
+			}, function (error) {
+				console.log(error)
+			})
+
+			var req = new XMLHttpRequest()
+			req.open("POST", 'http://localhost:8080/add_notice', true)
+			req.setRequestHeader("Content-Type", "application/json");
+			var data = JSON.stringify({ 'person_name':name,'file_name':filename,'bounty':bounty, 'notice_type':'wanted' })
+			req.onreadystatechange = (function () {
+				if (req.readyState === 4 && req.status === 200) {
+					var resp = req.responseText
+					console.log(resp)
+					if(resp == 'uploaded notice')
+					upload_cases()
+					else
+					alert("Upload failed")
+				}
+			})
+			console.log(data)
+			req.send(data)
+		}
+	</script>
+
+<script>
+	function emergency() {
+		// window.location.href = 'http://localhost:8080/emergency'
+		request('GET', 'http://localhost:8080/emergency_admin').then(function (res) {
+			// document.body(res)
+			document.open()
+			document.write(res.body)
+			document.close()
+		})
+	}
+
+	function index() {
+		// window.location.href = 'http://localhost:8080/emergency'
+		request('GET', 'http://localhost:8080/index_admin').then(function (res) {
+			// document.body(res)
+			document.open()
+			document.write(res.body)
+			document.close()
+		})
+	}
+
+	function upload_cases() {
+		// window.location.href = 'http://localhost:8080/emergency'
+		request('GET', 'http://localhost:8080/upload_cases').then(function (res) {
+			// document.body(res)
+			document.open()
+			document.write(res.body)
+			document.close()
+		})
+	}
+
+	function logout(){
+            window.location.href = "http://localhost:8080/index"
+        }
+</script>
+
+</body>
+
+</html>

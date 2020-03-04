@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Basic -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Mobile Metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Site Metas -->
+<title>Crime Reporting</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Site Icons -->
+<link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/static/bootstrap.min.css">
+<!-- Site CSS -->
+<link rel="stylesheet" href="/static/style.css">
+<!-- ALL VERSION CSS -->
+<link rel="stylesheet" href="/static/versions.css">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="/static/responsive.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="/static/custom.css">
+
+<!-- Modernizer for Portfolio -->
+<script src="/static/modernizer.js"></script>
+
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body class="host_version">
+
+	<!-- Modal -->
+	<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header tit-up">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Login</h4>
+				</div>
+				<div class="modal-body customer-box">
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs">
+						<li><a class="active" href="#Login" data-toggle="tab">Login</a></li>
+						<li><a href="#Registration" data-toggle="tab">Registration</a></li>
+					</ul>
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div class="tab-pane active" id="Login">
+							<form role="form" class="form-horizontal" onsubmit="return false">
+								<div class="form-group">
+									<div class="col-sm-12">
+										<input class="form-control" id="userid" placeholder="User Name" type="text"
+											required>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-12">
+										<input class="form-control" id="password" placeholder="Password" type="text"
+											required>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-10">
+										<button type="button" onclick="login_submit(false,'x','x')"
+											class="btn btn-light btn-radius btn-brd grd1">
+											Submit
+										</button>
+										<a class="for-pwd" href="javascript:;">Forgot your password?</a>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="tab-pane" id="Registration">
+							<form role="form" class="form-horizontal">
+								<div class="form-group">
+									<div class="col-sm-12">
+										<input class="form-control" id="aadhar_reg" placeholder="Aadhar" type="text"
+											required>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-12">
+										<input class="form-control" id="username_reg" placeholder="Name" type="text"
+											required>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-12">
+										<input class="form-control" id="phonenumber" placeholder="Mobile Number"
+											type="text" required>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-12">
+										<input class="form-control" id="userid_reg" placeholder="User ID" type="text"
+											required>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-12">
+										<input class="form-control" id="password_reg" placeholder="Password"
+											type="password" required>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-10">
+										<button type="button" onclick="registeruser()"
+											class="btn btn-light btn-radius btn-brd grd1">
+											Save &amp; Continue
+										</button>
+										<button type="button" class="btn btn-light btn-radius btn-brd grd1">
+											Cancel</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- LOADER -->
+	<div id="preloader">
+		<div class="loader-container">
+			<div class="progress-br float shadow">
+				<div class="progress__item"></div>
+			</div>
+		</div>
+	</div>
+	<!-- END LOADER -->
+
+	<!-- Start header -->
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="index.html">
+					<img src="/static/images/logo-hosting.png" alt="" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host"
+					aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-host">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a class="nav-link" onclick="index()">Home</a></li>
+						<li class="nav-item"><a class="nav-link" onclick="info_zone()">Information Zone</a></li>
+						<li class="nav-item active"><a class="nav-link" onclick="emergency()">Upload Cases</a></li>
+						<li class="nav-item"><a class="nav-link" onclick="contact()">Contact</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a class="hover-btn-new log" href="#" data-toggle="modal"
+								data-target="#login"><span>Login</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- End header -->
+
+	<div class="all-title-box">
+		<div class="container text-center">
+			<h1>Emergency<span class="m_1">Report An Emergency Case</span></h1>
+		</div>
+	</div>
+
+	<div id="overviews" class="section lb">
+		<div class="container">
+			<div class="section-title row text-center">
+				<div class="col-md-8 offset-md-2">
+					<h3>Upload The Details</h3>
+
+
+					<form role="form" class="form-horizontal">
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input class="form-control" id="aadhar" placeholder="Aadhar" type="text" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input class="form-control" id="username" placeholder="Name" type="text" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input class="form-control" id="up_location" placeholder="Location" type="text"
+									required>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input class="form-control" id="description" placeholder="description" type="text"
+									required>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input class="form-control" id="image" type="file" required>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-10">
+								<button type="button" onclick="upload()" class="btn btn-light btn-radius btn-brd grd1">
+									Upload
+								</button>
+
+
+					</form>
+					<script src="/static/all.js"></script>
+
+					<script src="/static/custom.js"></script>
+
+					<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+
+					<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-analytics.js"></script>
+
+					<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-storage.js"></script>
+
+					<script>
+						function emergency() {
+							// window.location.href = 'http://localhost:8080/emergency'
+							request('GET', 'http://localhost:8080/emergency').then(function (res) {
+								// document.body(res)
+								document.open()
+								document.write(res.body)
+								document.close()
+							})
+						}
+
+						function index() {
+							// window.location.href = 'http://localhost:8080/emergency'
+							request('GET', 'http://localhost:8080/index').then(function (res) {
+								// document.body(res)
+								document.open()
+								document.write(res.body)
+								document.close()
+							})
+						}
+
+						function contact() {
+							// window.location.href = 'http://localhost:8080/emergency'
+							request('GET', 'http://localhost:8080/contact').then(function (res) {
+								// document.body(res)
+								document.open()
+								document.write(res.body)
+								document.close()
+							})
+						}
+
+						function login_submit(autologin, user_id, password) {
+							console.log("Submitted")
+							var xhr = new XMLHttpRequest();
+							var url = "http://localhost:8080/login_submit";
+							xhr.open("POST", url, true);
+							xhr.setRequestHeader("Content-Type", "application/json");
+							xhr.onreadystatechange = function () {
+								if (xhr.readyState === 4 && xhr.status === 200) {
+									var resp = xhr.responseText;
+									console.log(resp)
+									if (resp == "wrong password") {
+										alert("Wrong password")
+										return
+									}
+									else if (resp == "wrong userid") {
+										alert("Wrong User ID")
+										return
+									}
+									document.open()
+									document.write(resp)
+									document.close()
+									// console.log(json)
+									// console.log(json.email + ", " + json.password);
+								}
+							};
+							// var data = JSON.stringify({"email": "hey@mail.com", "password": "101010"});
+							var uid, pass;
+
+							if (autologin) {
+								uid = user_id;
+								pass = password;
+							}
+							else {
+								uid = document.getElementById("userid").value
+								pass = document.getElementById("password").value
+							}
+							console.log(uid + "," + pass)
+							var user_credentials = JSON.stringify({ "username": uid, "password": pass })
+							xhr.send(user_credentials);
+
+							// request('POST','http://localhost:8080/login_submit',data).getBody('utf-8').then(JSON.parse);
+							// request('GET','http://localhost:8080/contact').then(function(res){
+							//     // document.body(res)
+							//     document.open()
+							//     document.write(res.body)
+							//     document.close()
+							// })
+						}
+
+						function registeruser() {
+							var uname = document.getElementById('username_reg').value
+							var uid = document.getElementById('userid_reg').value
+							var ph = document.getElementById('phonenumber').value
+							var aadhar = document.getElementById('aadhar_reg').value
+							var pass = document.getElementById('password_reg').value
+							var user_data = JSON.stringify({ "username": uname, "password": pass, "aadhar": aadhar, "phone": ph, "userid": uid })
+
+							var xhr = new XMLHttpRequest();
+							var url = 'http://localhost:8080/registeruser';
+							xhr.open("POST", url, true);
+							xhr.setRequestHeader("Content-Type", "application/json");
+							xhr.onreadystatechange = function () {
+								if (xhr.readyState === 4 && xhr.status === 200) {
+									var resp = xhr.responseText;
+									console.log(resp)
+									if (resp == "userid exists") {
+										alert("User with same user id already exists")
+										return
+									}
+									else if (resp == "registration failed") {
+										alert("Registration failed. Please try again")
+										return
+									}
+
+									login_submit(true, uid, pass);
+								}
+							};
+							xhr.send(user_data)
+						}
+
+						var firebaseConfig = {
+							apiKey: "AIzaSyCEvPHsE99y0sTccqPpbTMrpzxsvIo8d3c",
+							authDomain: "crime-scene-bcbf1.firebaseapp.com",
+							databaseURL: "https://crime-scene-bcbf1.firebaseio.com",
+							projectId: "crime-scene-bcbf1",
+							storageBucket: "crime-scene-bcbf1.appspot.com",
+							messagingSenderId: "1000042167224",
+							appId: "1:1000042167224:web:0d809f9f1e27ca63bd6d4d",
+							measurementId: "G-24KDJT144S"
+						};
+						// Initialize Firebase
+						firebase.initializeApp(firebaseConfig);
+						firebase.analytics();
+
+						function upload() {
+							var aadhar = document.getElementById('aadhar').value
+							var username = document.getElementById('username').value
+							var locn = document.getElementById('up_location').value
+							var desc = document.getElementById('description').value
+							var photo = document.getElementById('image').files[0]
+
+							var filename = username + photo.name
+							var firestore = firebase.storage()
+							var storageRef = firestore.ref()
+							var imageRef = storageRef.child('images/guest/' + filename)
+							imageRef.put(photo).then(function (snap) {
+								console.log("Uploaded file")
+							}, function (error) {
+								console.log(error)
+							})
+
+
+							//send data to realtime storage
+							var req = new XMLHttpRequest()
+							req.open("POST", 'http://localhost:8080/upload', true)
+							req.setRequestHeader("Content-Type", "application/json");
+							var data = JSON.stringify({ 'registered_user': false, 'up_location': locn, 'description': desc, 'filename': filename, 'aadhar': aadhar, 'username': username })
+							req.onreadystatechange = (function () {
+								if (req.readyState === 4 && req.status === 200) {
+									var resp = req.responseText
+									console.log(resp)
+								}
+							})
+							console.log(data)
+							req.send(data)
+
+						}
+
+						function info_zone() {
+							// window.location.href = 'http://localhost:8080/emergency'
+							request('GET', 'http://localhost:8080/info_zone').then(function (res) {
+								// document.body(res)
+								document.open()
+								document.write(res.body)
+								document.close()
+							})
+						}
+					</script>
+
+</body>
+
+</html>

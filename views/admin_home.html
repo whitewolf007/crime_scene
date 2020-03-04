@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Basic -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Mobile Metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Site Metas -->
+<title>Crime Reporting</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Site Icons -->
+<link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/static/bootstrap.min.css">
+<!-- Site CSS -->
+<link rel="stylesheet" href="/static/style.css">
+<!-- ALL VERSION CSS -->
+<link rel="stylesheet" href="/static/statics/versions.css">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="/static/responsive.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="/static/custom.css">
+
+<!-- Modernizer for Portfolio -->
+<script src="/static/modernizer.js"></script>
+
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body class="host_version">
+
+    <!-- Modal -->
+    <!--<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header tit-up">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Logout</h4>
+			</div>
+			<div class="modal-body customer-box">
+				
+				<ul class="nav nav-tabs">
+					<li><a class="active" href="#Login" data-toggle="tab">Login</a></li>
+					<li><a href="#Registration" data-toggle="tab">Registration</a></li>
+				</ul>
+				
+				<div class="tab-content">
+					<div class="tab-pane active" id="Login">
+						<form role="form" class="form-horizontal" action="">
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input class="form-control" id="userid" placeholder="User Name" type="text" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input class="form-control" id="password" placeholder="Password" type="text" required>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-10">
+									<button type="submit" class="btn btn-light btn-radius btn-brd grd1">
+										Submit
+									</button>
+									<a class="for-pwd" href="javascript:;">Forgot your password?</a>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="tab-pane" id="Registration">
+						<form role="form" class="form-horizontal">
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input class="form-control" id="aadhar" placeholder="Aadhar" type="text" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input class="form-control" id="name" placeholder="Name" type="text" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input class="form-control" id="userid" placeholder="User Name" type="text" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input class="form-control" id="password" placeholder="Password" type="password" required>
+								</div>
+							</div>
+							<div class="row">							
+								<div class="col-sm-10">
+									<button type="button" class="btn btn-light btn-radius btn-brd grd1">
+										Save &amp; Continue
+									</button>
+									<button type="button" class="btn btn-light btn-radius btn-brd grd1">
+										Cancel</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	  </div>
+	</div>-->
+
+
+    <div id="preloader">
+        <div class="loader-container">
+            <div class="progress-br float shadow">
+                <div class="progress__item"></div>
+            </div>
+        </div>
+    </div>
+    <!-- END LOADER -->
+
+    <!-- Start header -->
+    <header class="top-navbar">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <h1><strong>
+                        <font color="white">Welcome Admin</font>
+                    </strong></h1>
+                <!--<a class="navbar-brand" href="index.html">
+				<!--<a class="navbar-brand" href="index.html">
+					<img src="images/logo-hosting.png" alt="" />
+				</a>-->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host"
+                    aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbars-host">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" onclick="index()">Dashboard</a></li>
+                        <!--<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Hosting </a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="hosting.html">Web Hosting </a>
+								<a class="dropdown-item" href="hosting.html">WordPress Hosting </a>
+								<a class="dropdown-item" href="hosting.html">Cloud Server </a>
+								<a class="dropdown-item" href="hosting.html">Reseller Package </a>
+								<a class="dropdown-item" href="hosting.html">Dedicated Hosting </a>
+							</div>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="domain.html">Domain</a></li>
+						<li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>-->
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="hover-btn-new log" onclick="logout()" data-toggle="modal"
+                                data-target="#login"><span>Logout</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- End header -->
+
+    <div class="all-title-box">
+        <div class="container text-center">
+            <h1>Registered Users<span class="m_1">List of registered users</span></h1>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="/static/all.js"></script>
+
+    <script src="/static/custom.js"></script>
+
+    <script>
+
+        function index() {
+            // window.location.href = 'http://localhost:8080/emergency'
+            request('GET', 'http://localhost:8080/index_admin').then(function (res) {
+                // document.body(res)
+                document.open()
+                document.write(res.body)
+                document.close()
+            })
+        }
+    </script>
+
+    <script>
+
+        request('GET', 'http://localhost:8080/fetchusers').then(function (res) {
+            console.log(res.body)
+            var obj = JSON.parse(res.body)
+            var keys = Object.keys(obj)
+            console.log(obj['admin'])
+            for (var i = 0; i < keys.length; i++) {
+                if (keys[i] == 'admin')
+                    continue
+                else
+                    showNotice(obj[keys[i]].username, keys[i])
+            }
+        })
+
+        function showNotice(username, userid) {
+            // console.log('Inside shownotice:' + file_name + "," + location_ + "," + registered)
+            var hr_ = document.createElement('hr')
+            hr_.className = 'invis'
+            hr_.style.margin = '10px 10px 10px 10px'
+            var main_div = document.createElement('div')
+            hr_.appendChild(main_div)
+            var div2 = document.createElement('div')
+            div2.className = 'col-md-12 col-sm-6 col-xs-12'
+            main_div.appendChild(div2)
+            var div3 = document.createElement('div')
+            div3.className = 'icon-wrapper wow fadeIn'
+            div2.appendChild(div3)
+            var h3 = document.createElement('h3')
+            h3.innerHTML = 'Username: ' + username
+            div3.appendChild(h3)
+
+            var h4 = document.createElement('h3')
+            h4.innerHTML = 'User ID: ' + userid
+            div3.appendChild(h4)
+
+            document.body.appendChild(main_div)
+        }
+
+
+
+
+        // var main_div = document.createElement("div")
+        // main_div.style.width = "500px";
+        // main_div.style.height = "500px";
+        // main_div.style.background = "red";
+        // main_div.style.color = "white";
+
+
+        function logout() {
+            window.location.href = "http://localhost:8080/index"
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

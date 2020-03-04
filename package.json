@@ -1,0 +1,19 @@
+{
+  "name": "sessiontest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "connect-busboy": "0.0.2",
+    "express": "^4.17.1",
+    "express-formidable": "^1.2.0",
+    "firebase": "^7.9.3",
+    "firebase-admin": "^8.9.2",
+    "formidable": "^1.2.2"
+  }
+}
