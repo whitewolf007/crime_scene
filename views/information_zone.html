@@ -42,81 +42,94 @@
 <body class="host_version">
 
 	<!-- Modal -->
-	<!--<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-		<div class="modal-content">
-			<div class="modal-header tit-up">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title">Logout</h4>
-			</div>
-			<div class="modal-body customer-box">
-				
-				<ul class="nav nav-tabs">
-					<li><a class="active" href="#Login" data-toggle="tab">Login</a></li>
-					<li><a href="#Registration" data-toggle="tab">Registration</a></li>
-				</ul>
-				
-				<div class="tab-content">
-					<div class="tab-pane active" id="Login">
-						<form role="form" class="form-horizontal" action="">
-							<div class="form-group">
-								<div class="col-sm-12">
-									<input class="form-control" id="userid" placeholder="User Name" type="text" required>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-12">
-									<input class="form-control" id="password" placeholder="Password" type="text" required>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-10">
-									<button type="submit" class="btn btn-light btn-radius btn-brd grd1">
-										Submit
-									</button>
-									<a class="for-pwd" href="javascript:;">Forgot your password?</a>
-								</div>
-							</div>
-						</form>
-					</div>
-					<div class="tab-pane" id="Registration">
-						<form role="form" class="form-horizontal">
-							<div class="form-group">
-								<div class="col-sm-12">
-									<input class="form-control" id="aadhar" placeholder="Aadhar" type="text" required>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-12">
-									<input class="form-control" id="name" placeholder="Name" type="text" required>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-12">
-									<input class="form-control" id="userid" placeholder="User Name" type="text" required>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-12">
-									<input class="form-control" id="password" placeholder="Password" type="password" required>
-								</div>
-							</div>
-							<div class="row">							
-								<div class="col-sm-10">
-									<button type="button" class="btn btn-light btn-radius btn-brd grd1">
-										Save &amp; Continue
-									</button>
-									<button type="button" class="btn btn-light btn-radius btn-brd grd1">
-										Cancel</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	  </div>
-	</div>-->
+	<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header tit-up">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Login</h4>
+                </div>
+                <div class="modal-body customer-box">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs">
+                        <li><a class="active" href="#Login" data-toggle="tab">Login</a></li>
+                        <li><a href="#Registration" data-toggle="tab">Registration</a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="Login">
+                            <form role="form" class="form-horizontal" onsubmit="return false">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input class="form-control" id="userid" placeholder="User ID" type="text"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input class="form-control" id="password" placeholder="Password" type="text"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <button type="button" class="btn btn-light btn-radius btn-brd grd1"
+                                            onclick="login_submit(false,'x','x')">
+                                            Submit
+                                        </button>
+                                        <a class="for-pwd" href="javascript:;">Forgot your password?</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="Registration">
+                            <form role="form" class="form-horizontal" onsubmit="return false">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input class="form-control" id="aadhar" placeholder="Aadhar" type="text"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input class="form-control" id="name" placeholder="Name" type="text" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input class="form-control" id="phonenumber" placeholder="Mobile Number"
+                                            type="text" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input class="form-control" id="userid_reg" placeholder="User ID" type="text"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input class="form-control" id="password_reg" placeholder="Password"
+                                            type="password" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <button type="button" class="btn btn-light btn-radius btn-brd grd1"
+                                            onclick="registeruser()">
+                                            Save &amp; Continue
+                                        </button>
+                                        <button type="button" class="btn btn-light btn-radius btn-brd grd1">
+                                            Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 	<div id="preloader">
@@ -164,7 +177,7 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a class="hover-btn-new log" onclick="logout()" data-toggle="modal"
-								data-target="#login"><span>Logout</span></a></li>
+								data-target="#login"><span>Login</span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -236,21 +249,34 @@
 	<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-storage.js"></script>
 
 	<script>
-
-		// Your web app's Firebase configuration
 		var firebaseConfig = {
-			apiKey: "AIzaSyCEvPHsE99y0sTccqPpbTMrpzxsvIo8d3c",
-			authDomain: "crime-scene-bcbf1.firebaseapp.com",
-			databaseURL: "https://crime-scene-bcbf1.firebaseio.com",
-			projectId: "crime-scene-bcbf1",
-			storageBucket: "crime-scene-bcbf1.appspot.com",
-			messagingSenderId: "1000042167224",
-			appId: "1:1000042167224:web:0d809f9f1e27ca63bd6d4d",
-			measurementId: "G-24KDJT144S"
+			apiKey: "AIzaSyBkQD5sCLFS3Z1bYVwbx4TIE2QPn7XojAw",
+			authDomain: "crime-scene-6af89.firebaseapp.com",
+			databaseURL: "https://crime-scene-6af89.firebaseio.com",
+			projectId: "crime-scene-6af89",
+			storageBucket: "crime-scene-6af89.appspot.com",
+			messagingSenderId: "547210952838",
+			appId: "1:547210952838:web:c8026988c71e3faa205107",
+			measurementId: "G-6L4KGZQBEY"
 		};
 		// Initialize Firebase
 		firebase.initializeApp(firebaseConfig);
 		firebase.analytics();
+
+		// // Your web app's Firebase configuration
+		// var firebaseConfig = {
+		// 	apiKey: "AIzaSyCEvPHsE99y0sTccqPpbTMrpzxsvIo8d3c",
+		// 	authDomain: "crime-scene-bcbf1.firebaseapp.com",
+		// 	databaseURL: "https://crime-scene-bcbf1.firebaseio.com",
+		// 	projectId: "crime-scene-bcbf1",
+		// 	storageBucket: "crime-scene-bcbf1.appspot.com",
+		// 	messagingSenderId: "1000042167224",
+		// 	appId: "1:1000042167224:web:0d809f9f1e27ca63bd6d4d",
+		// 	measurementId: "G-24KDJT144S"
+		// };
+		// // Initialize Firebase
+		// firebase.initializeApp(firebaseConfig);
+		// firebase.analytics();
 		var firestore = firebase.storage()
 		var storageRef = firestore.ref()
 
@@ -262,22 +288,22 @@
 			console.log(keys)
 			for (var i = 0; i < keys.length; i++) {
 				// console.log(cases[keys[i]])
-				console.log('key:'+keys[i])
+				console.log('key:' + keys[i])
 
 				var obj = cases[keys[i]]
 				var file_name = obj.file_name
 				var person_name = obj.person_name
-				console.log('Filename:'+file_name)
-				if(obj.notice_type == 'missing'){
+				console.log('Filename:' + file_name)
+				if (obj.notice_type == 'missing') {
 					console.log('missing')
 					var location_ = obj['location']
-					console.log('location:'+location_)
-					showNotice(file_name,location_,person_name,'Missing')
+					console.log('location:' + location_)
+					showNotice(file_name, location_, person_name, 'Missing')
 				}
-				else if(obj.notice_type == 'wanted'){
+				else if (obj.notice_type == 'wanted') {
 					console.log('wanted')
 					var location_ = obj['bounty']
-					showNotice(file_name,location_,person_name,'Wanted')
+					showNotice(file_name, location_, person_name, 'Wanted')
 				}
 				// var obj_keys = Object.keys(obj)
 				// for(var j = 0; j<obj_keys.length; j++){
@@ -298,7 +324,7 @@
 				// 		showNotice(file_name,bounty,person_name,'wanted')
 				// 	}
 				// }
-				
+
 				// var file_name = notices[keys[i]].file_name
 				// var person_name = notices[keys[i]].person_name
 				// var notice_type = notices[keys[i]].notice_type
@@ -309,8 +335,8 @@
 			// console.log("Number of keys:"+Object.keys(json).length)
 		})
 
-		function showNotice(file_name, location_bounty,person_name,notice_type) {
-			console.log('Inside shownotice:'+file_name+","+location_bounty+","+person_name+","+notice_type)
+		function showNotice(file_name, location_bounty, person_name, notice_type) {
+			console.log('Inside shownotice:' + file_name + "," + location_bounty + "," + person_name + "," + notice_type)
 			var hr_ = document.createElement('hr')
 			hr_.className = 'invis'
 			hr_.style.margin = '10px 10px 10px 10px'
@@ -323,39 +349,40 @@
 			div3.className = 'icon-wrapper wow fadeIn'
 			div2.appendChild(div3)
 			var n_type = document.createElement('h3')
-			n_type.innerHTML = 'Notice Type: '+notice_type
+			n_type.innerHTML = 'Notice Type: ' + notice_type
 			div3.appendChild(n_type)
 
 			var img_path
 			// if(registered == 0)
-			img_path = 'images/notice/'+file_name
+			img_path = 'images/notice/' + file_name
 			// else
 			// img_path = 'images/user/'+file_name
 
 			storageRef.child(img_path).getDownloadURL().then(function (url) {
-			var elem = document.createElement('img')
-			elem.setAttribute("height", "300");
-			elem.setAttribute("width", "300");
-			elem.setAttribute('src', url)
-			div3.appendChild(elem)
-			
+				var elem = document.createElement('img')
+				elem.setAttribute("height", "300");
+				elem.setAttribute("width", "300");
+				elem.setAttribute('src', url)
+				div3.appendChild(elem)
 
-			var h4 = document.createElement('h3')
-			h4.innerHTML = 'Person Name: '+person_name
-			div3.appendChild(h4)
 
-			var h3 = document.createElement('h3')
-			if(notice_type == 'Missing')
-			h3.innerHTML = 'Location: '+location_bounty
-			else
-			h3.innerHTML = 'Bounty: '+location_bounty
-			div3.appendChild(h3)
+				var h4 = document.createElement('h3')
+				h4.innerHTML = 'Person Name: ' + person_name
+				h4.style.float = 'center'
+				div3.appendChild(h4)
 
-			document.body.appendChild(main_div)
+				var h3 = document.createElement('h3')
+				if (notice_type == 'Missing')
+					h3.innerHTML = 'Location: ' + location_bounty
+				else
+					h3.innerHTML = 'Bounty: ' + location_bounty
+				div3.appendChild(h3)
 
-			
-			// main_div.appendChild(elem)
-		})
+				document.body.appendChild(main_div)
+
+
+				// main_div.appendChild(elem)
+			})
 		}
 
 
@@ -367,12 +394,96 @@
 		// main_div.style.background = "red";
 		// main_div.style.color = "white";
 
-		
-		function logout(){
-            window.location.href = "http://localhost:8080/index"
+
+		// function logout() {
+		// 	window.location.href = "http://localhost:8080/index"
+		// }
+
+		function login_submit(autologin, user_id, password) {
+            console.log("Submitted")
+            var uid,pass;
+            var xhr = new XMLHttpRequest();
+            var url = "http://localhost:8080/login_submit";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var resp = xhr.responseText;
+                    console.log(resp)
+                    if (resp == "wrong password") {
+                        alert("Wrong password")
+                        return
+                    }
+                    else if (resp == "wrong userid") {
+                        alert("Wrong User ID")
+                        return
+                    }
+                    document.open()
+                    document.write(resp)
+                    document.close()
+
+                    localStorage.setItem('userid',uid)
+
+                    // console.log(json)
+                    // console.log(json.email + ", " + json.password);
+                }
+            };
+            // var data = JSON.stringify({"email": "hey@mail.com", "password": "101010"});
+            
+
+            if (autologin) {
+                uid = user_id;
+                pass = password;
+            }
+            else{
+                uid = document.getElementById("userid").value
+                pass = document.getElementById("password").value
+            }
+            console.log(uid + "," + pass)
+            var user_credentials = JSON.stringify({ "username": uid, "password": pass })
+            xhr.send(user_credentials);
+
+            // request('POST','http://localhost:8080/login_submit',data).getBody('utf-8').then(JSON.parse);
+            // request('GET','http://localhost:8080/contact').then(function(res){
+            //     // document.body(res)
+            //     document.open()
+            //     document.write(res.body)
+            //     document.close()
+            // })
         }
 
-		
+        function registeruser() {
+            var uname = document.getElementById('name').value
+            var uid = document.getElementById('userid_reg').value
+            var ph = document.getElementById('phonenumber').value
+            var aadhar = document.getElementById('aadhar').value
+            var pass = document.getElementById('password_reg').value
+            var user_data = JSON.stringify({ "username": uname, "password": pass, "aadhar": aadhar, "phone": ph, "userid": uid })
+
+            var xhr = new XMLHttpRequest();
+            var url = 'http://localhost:8080/registeruser';
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var resp = xhr.responseText;
+                    console.log(resp)
+                    if (resp == "userid exists") {
+                        alert("User with same user id already exists")
+                        return
+                    }
+                    else if (resp == "registration failed") {
+                        alert("Registration failed. Please try again")
+                        return
+                    }
+
+                    login_submit(true,uid,pass);
+                }
+            };
+            xhr.send(user_data)
+        }
+
+
 
 	</script>
 

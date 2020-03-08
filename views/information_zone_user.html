@@ -145,8 +145,8 @@
 				<div class="collapse navbar-collapse" id="navbars-host">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item"><a class="nav-link" onclick="index()">Home</a></li>
-                        <li class="nav-item active"><a class="nav-link" onclick="info_zone()">Information Zone</a></li>
-                        <li class="nav-item"><a class="nav-link" onclick="my_cases()">My Cases</a></li>
+						<li class="nav-item active"><a class="nav-link" onclick="info_zone()">Information Zone</a></li>
+						<li class="nav-item"><a class="nav-link" onclick="my_cases()">My Cases</a></li>
 						<li class="nav-item"><a class="nav-link" onclick="upload_cases()">Upload Cases</a></li>
 						<li class="nav-item"><a class="nav-link" onclick="contact()">Contact</a></li>
 						<!--<li class="nav-item dropdown">
@@ -197,16 +197,16 @@
 				document.write(res.body)
 				document.close()
 			})
-        }
-        
-        function my_cases(){
-            request('GET', 'http://localhost:8080/my_cases_user').then(function (res) {
-                // document.body(res)
-                document.open()
-                document.write(res.body)
-                document.close()
-            })
-        }
+		}
+
+		function my_cases() {
+			request('GET', 'http://localhost:8080/my_cases_user').then(function (res) {
+				// document.body(res)
+				document.open()
+				document.write(res.body)
+				document.close()
+			})
+		}
 
 		function index() {
 			// window.location.href = 'http://localhost:8080/info_zone'
@@ -220,7 +220,7 @@
 
 		function upload_cases() {
 			// window.location.href = 'http://localhost:8080/emergency'
-			request('GET', 'http://localhost:8080/emergency').then(function (res) {
+			request('GET', 'http://localhost:8080/emergency_user').then(function (res) {
 				// document.body(res)
 				document.open()
 				document.write(res.body)
@@ -247,20 +247,33 @@
 
 	<script>
 
-		// Your web app's Firebase configuration
 		var firebaseConfig = {
-			apiKey: "AIzaSyCEvPHsE99y0sTccqPpbTMrpzxsvIo8d3c",
-			authDomain: "crime-scene-bcbf1.firebaseapp.com",
-			databaseURL: "https://crime-scene-bcbf1.firebaseio.com",
-			projectId: "crime-scene-bcbf1",
-			storageBucket: "crime-scene-bcbf1.appspot.com",
-			messagingSenderId: "1000042167224",
-			appId: "1:1000042167224:web:0d809f9f1e27ca63bd6d4d",
-			measurementId: "G-24KDJT144S"
+			apiKey: "AIzaSyBkQD5sCLFS3Z1bYVwbx4TIE2QPn7XojAw",
+			authDomain: "crime-scene-6af89.firebaseapp.com",
+			databaseURL: "https://crime-scene-6af89.firebaseio.com",
+			projectId: "crime-scene-6af89",
+			storageBucket: "crime-scene-6af89.appspot.com",
+			messagingSenderId: "547210952838",
+			appId: "1:547210952838:web:c8026988c71e3faa205107",
+			measurementId: "G-6L4KGZQBEY"
 		};
 		// Initialize Firebase
 		firebase.initializeApp(firebaseConfig);
 		firebase.analytics();
+		// // Your web app's Firebase configuration
+		// var firebaseConfig = {
+		// 	apiKey: "AIzaSyCEvPHsE99y0sTccqPpbTMrpzxsvIo8d3c",
+		// 	authDomain: "crime-scene-bcbf1.firebaseapp.com",
+		// 	databaseURL: "https://crime-scene-bcbf1.firebaseio.com",
+		// 	projectId: "crime-scene-bcbf1",
+		// 	storageBucket: "crime-scene-bcbf1.appspot.com",
+		// 	messagingSenderId: "1000042167224",
+		// 	appId: "1:1000042167224:web:0d809f9f1e27ca63bd6d4d",
+		// 	measurementId: "G-24KDJT144S"
+		// };
+		// // Initialize Firebase
+		// firebase.initializeApp(firebaseConfig);
+		// firebase.analytics();
 		var firestore = firebase.storage()
 		var storageRef = firestore.ref()
 
@@ -272,22 +285,22 @@
 			console.log(keys)
 			for (var i = 0; i < keys.length; i++) {
 				// console.log(cases[keys[i]])
-				console.log('key:'+keys[i])
+				console.log('key:' + keys[i])
 
 				var obj = cases[keys[i]]
 				var file_name = obj.file_name
 				var person_name = obj.person_name
-				console.log('Filename:'+file_name)
-				if(obj.notice_type == 'missing'){
+				console.log('Filename:' + file_name)
+				if (obj.notice_type == 'missing') {
 					console.log('missing')
 					var location_ = obj['location']
-					console.log('location:'+location_)
-					showNotice(file_name,location_,person_name,'Missing')
+					console.log('location:' + location_)
+					showNotice(file_name, location_, person_name, 'Missing')
 				}
-				else if(obj.notice_type == 'wanted'){
+				else if (obj.notice_type == 'wanted') {
 					console.log('wanted')
 					var location_ = obj['bounty']
-					showNotice(file_name,location_,person_name,'Wanted')
+					showNotice(file_name, location_, person_name, 'Wanted')
 				}
 				// var obj_keys = Object.keys(obj)
 				// for(var j = 0; j<obj_keys.length; j++){
@@ -308,7 +321,7 @@
 				// 		showNotice(file_name,bounty,person_name,'wanted')
 				// 	}
 				// }
-				
+
 				// var file_name = notices[keys[i]].file_name
 				// var person_name = notices[keys[i]].person_name
 				// var notice_type = notices[keys[i]].notice_type
@@ -319,12 +332,13 @@
 			// console.log("Number of keys:"+Object.keys(json).length)
 		})
 
-		function showNotice(file_name, location_bounty,person_name,notice_type) {
-			console.log('Inside shownotice:'+file_name+","+location_bounty+","+person_name+","+notice_type)
+		function showNotice(file_name, location_bounty, person_name, notice_type) {
+			console.log('Inside shownotice:' + file_name + "," + location_bounty + "," + person_name + "," + notice_type)
 			var hr_ = document.createElement('hr')
 			hr_.className = 'invis'
 			hr_.style.margin = '10px 10px 10px 10px'
 			var main_div = document.createElement('div')
+			main_div.style.float = 'center'
 			hr_.appendChild(main_div)
 			var div2 = document.createElement('div')
 			div2.className = 'col-md-12 col-sm-6 col-xs-12'
@@ -333,39 +347,39 @@
 			div3.className = 'icon-wrapper wow fadeIn'
 			div2.appendChild(div3)
 			var n_type = document.createElement('h3')
-			n_type.innerHTML = 'Notice Type: '+notice_type
+			n_type.innerHTML = 'Notice Type: ' + notice_type
 			div3.appendChild(n_type)
 
 			var img_path
 			// if(registered == 0)
-			img_path = 'images/notice/'+file_name
+			img_path = 'images/notice/' + file_name
 			// else
 			// img_path = 'images/user/'+file_name
 
 			storageRef.child(img_path).getDownloadURL().then(function (url) {
-			var elem = document.createElement('img')
-			elem.setAttribute("height", "300");
-			elem.setAttribute("width", "300");
-			elem.setAttribute('src', url)
-			div3.appendChild(elem)
-			
+				var elem = document.createElement('img')
+				elem.setAttribute("height", "300");
+				elem.setAttribute("width", "300");
+				elem.setAttribute('src', url)
+				div3.appendChild(elem)
 
-			var h4 = document.createElement('h3')
-			h4.innerHTML = 'Person Name: '+person_name
-			div3.appendChild(h4)
 
-			var h3 = document.createElement('h3')
-			if(notice_type == 'Missing')
-			h3.innerHTML = 'Location: '+location_bounty
-			else
-			h3.innerHTML = 'Bounty: '+location_bounty
-			div3.appendChild(h3)
+				var h4 = document.createElement('h3')
+				h4.innerHTML = 'Person Name: ' + person_name
+				div3.appendChild(h4)
 
-			document.body.appendChild(main_div)
+				var h3 = document.createElement('h3')
+				if (notice_type == 'Missing')
+					h3.innerHTML = 'Location: ' + location_bounty
+				else
+					h3.innerHTML = 'Bounty: ' + location_bounty
+				div3.appendChild(h3)
 
-			
-			// main_div.appendChild(elem)
-		})
+				document.body.appendChild(main_div)
+
+
+				// main_div.appendChild(elem)
+			})
 		}
 
 
@@ -377,12 +391,12 @@
 		// main_div.style.background = "red";
 		// main_div.style.color = "white";
 
-		
-		function logout(){
-            window.location.href = "http://localhost:8080/index"
-        }
 
-		
+		function logout() {
+			window.location.href = "http://localhost:8080/index"
+		}
+
+
 
 	</script>
 

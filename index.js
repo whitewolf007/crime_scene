@@ -4,13 +4,17 @@ var app = express()
 var fs = require('fs')
 var path = require('path')
 var admin = require('firebase-admin')
-var formidable = require('formidable')
+// var formidable = require('formidable')
 
 var serviceAccount = require('./serviceAccount.json')
+// admin.initializeApp({
+//     credential: admin.credential.cert(serviceAccount),
+//     databaseURL: "https://crime-scene-bcbf1.firebaseio.com"
+// })
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://crime-scene-bcbf1.firebaseio.com"
-})
+    databaseURL: "https://crime-scene-6af89.firebaseio.com"
+  });
 var database = admin.database()
 var currentuser
 
@@ -80,6 +84,15 @@ app.get('/upload_cases', function (req, res) {
     ret.pipe(res);
 })
 
+app.get('/fetchusertree',function(req,res){
+    var db_path = '/users'
+    database.ref(db_path).once('value').then(function(snap){
+        var data = snap.val()
+        res.send(data)
+        console.log("USertree:"+data)
+    })
+})
+
 app.get('/fetchcases', function (req, res) {
     var db_path = '/user_uploads'
     database.ref(db_path).once('value').then(function (snap) {
@@ -117,6 +130,8 @@ app.get('/fetchnotices',function(req,res){
     var db_path = '/notice'
     database.ref(db_path).once('value').then(function(snap){
         var data = snap.val()
+        if(data == null)
+        return
         var keys = Object.keys(data)
         var responsedata = new Object
         for (var i = 0; i < keys.length; i++) {
@@ -342,6 +357,7 @@ app.post('/upload', function (req, res) {
         var locn = req.body.up_location
         var desc = req.body.description
         var filename = req.body.filename
+        var ph = req.body.phone
 
         console.log(aadhar + name + locn + desc + filename)
 
@@ -359,7 +375,7 @@ app.post('/upload', function (req, res) {
             // data_len++
             // console.log(data_len)
 
-            var up_data = { 'location': locn, 'filename': filename, 'description': desc, 'aadhar': aadhar, 'date': up_date, 'person_name': name, 'status': 'pending' }
+            var up_data = { 'location': locn, 'filename': filename, 'description': desc, 'aadhar': aadhar, 'date': up_date, 'person_name': name, 'status': 'pending','phone':ph }
             db_path = db_path + "case_" + count
             console.log(db_path)
             database.ref(db_path).update(up_data).then(function (snap) {

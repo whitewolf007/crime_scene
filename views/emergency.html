@@ -204,6 +204,12 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-12">
+								<input class="form-control" id="mob" placeholder="Mobile" type="text"
+									required>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
 								<input class="form-control" id="description" placeholder="description" type="text"
 									required>
 							</div>
@@ -343,24 +349,38 @@
 						}
 
 						var firebaseConfig = {
-							apiKey: "AIzaSyCEvPHsE99y0sTccqPpbTMrpzxsvIo8d3c",
-							authDomain: "crime-scene-bcbf1.firebaseapp.com",
-							databaseURL: "https://crime-scene-bcbf1.firebaseio.com",
-							projectId: "crime-scene-bcbf1",
-							storageBucket: "crime-scene-bcbf1.appspot.com",
-							messagingSenderId: "1000042167224",
-							appId: "1:1000042167224:web:0d809f9f1e27ca63bd6d4d",
-							measurementId: "G-24KDJT144S"
+							apiKey: "AIzaSyBkQD5sCLFS3Z1bYVwbx4TIE2QPn7XojAw",
+							authDomain: "crime-scene-6af89.firebaseapp.com",
+							databaseURL: "https://crime-scene-6af89.firebaseio.com",
+							projectId: "crime-scene-6af89",
+							storageBucket: "crime-scene-6af89.appspot.com",
+							messagingSenderId: "547210952838",
+							appId: "1:547210952838:web:c8026988c71e3faa205107",
+							measurementId: "G-6L4KGZQBEY"
 						};
 						// Initialize Firebase
 						firebase.initializeApp(firebaseConfig);
 						firebase.analytics();
+						// var firebaseConfig = {
+						// 	apiKey: "AIzaSyCEvPHsE99y0sTccqPpbTMrpzxsvIo8d3c",
+						// 	authDomain: "crime-scene-bcbf1.firebaseapp.com",
+						// 	databaseURL: "https://crime-scene-bcbf1.firebaseio.com",
+						// 	projectId: "crime-scene-bcbf1",
+						// 	storageBucket: "crime-scene-bcbf1.appspot.com",
+						// 	messagingSenderId: "1000042167224",
+						// 	appId: "1:1000042167224:web:0d809f9f1e27ca63bd6d4d",
+						// 	measurementId: "G-24KDJT144S"
+						// };
+						// // Initialize Firebase
+						// firebase.initializeApp(firebaseConfig);
+						// firebase.analytics();
 
 						function upload() {
 							var aadhar = document.getElementById('aadhar').value
 							var username = document.getElementById('username').value
 							var locn = document.getElementById('up_location').value
 							var desc = document.getElementById('description').value
+							var mob = document.getElementById('mob').value
 							var photo = document.getElementById('image').files[0]
 
 							var filename = username + photo.name
@@ -378,11 +398,13 @@
 							var req = new XMLHttpRequest()
 							req.open("POST", 'http://localhost:8080/upload', true)
 							req.setRequestHeader("Content-Type", "application/json");
-							var data = JSON.stringify({ 'registered_user': false, 'up_location': locn, 'description': desc, 'filename': filename, 'aadhar': aadhar, 'username': username })
+							var data = JSON.stringify({ 'registered_user': false, 'up_location': locn, 'description': desc, 'filename': filename, 'aadhar': aadhar, 'username': username,'phone':mob })
 							req.onreadystatechange = (function () {
 								if (req.readyState === 4 && req.status === 200) {
 									var resp = req.responseText
 									console.log(resp)
+									if(resp == 'uploaded')
+									emergency()
 								}
 							})
 							console.log(data)

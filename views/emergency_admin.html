@@ -132,9 +132,9 @@
 	<header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container-fluid">
-				<h1><strong>
+				<!-- <h1><strong>
 						<font color="white">Welcome Admin</font>
-					</strong></h1>
+					</strong></h1> -->
 				<!--<a class="navbar-brand" href="index.html">
 				<!--<a class="navbar-brand" href="index.html">
 					<img src="images/logo-hosting.png" alt="" />
@@ -230,27 +230,49 @@
 
 	<script>
 
-		// Your web app's Firebase configuration
+		var usertree
+
+		//FETCH USER DATABASE FOR COMPARISON
+		request('GET', 'http://localhost:8080/fetchusertree').then(function (res) {
+			console.log("Usertree:" + res.body)
+			usertree = JSON.parse(res.body)
+		})
+
 		var firebaseConfig = {
-			apiKey: "AIzaSyCEvPHsE99y0sTccqPpbTMrpzxsvIo8d3c",
-			authDomain: "crime-scene-bcbf1.firebaseapp.com",
-			databaseURL: "https://crime-scene-bcbf1.firebaseio.com",
-			projectId: "crime-scene-bcbf1",
-			storageBucket: "crime-scene-bcbf1.appspot.com",
-			messagingSenderId: "1000042167224",
-			appId: "1:1000042167224:web:0d809f9f1e27ca63bd6d4d",
-			measurementId: "G-24KDJT144S"
+			apiKey: "AIzaSyBkQD5sCLFS3Z1bYVwbx4TIE2QPn7XojAw",
+			authDomain: "crime-scene-6af89.firebaseapp.com",
+			databaseURL: "https://crime-scene-6af89.firebaseio.com",
+			projectId: "crime-scene-6af89",
+			storageBucket: "crime-scene-6af89.appspot.com",
+			messagingSenderId: "547210952838",
+			appId: "1:547210952838:web:c8026988c71e3faa205107",
+			measurementId: "G-6L4KGZQBEY"
 		};
 		// Initialize Firebase
 		firebase.initializeApp(firebaseConfig);
 		firebase.analytics();
+
+		// // Your web app's Firebase configuration
+		// var firebaseConfig = {
+		// 	apiKey: "AIzaSyCEvPHsE99y0sTccqPpbTMrpzxsvIo8d3c",
+		// 	authDomain: "crime-scene-bcbf1.firebaseapp.com",
+		// 	databaseURL: "https://crime-scene-bcbf1.firebaseio.com",
+		// 	projectId: "crime-scene-bcbf1",
+		// 	storageBucket: "crime-scene-bcbf1.appspot.com",
+		// 	messagingSenderId: "1000042167224",
+		// 	appId: "1:1000042167224:web:0d809f9f1e27ca63bd6d4d",
+		// 	measurementId: "G-24KDJT144S"
+		// };
+		// // Initialize Firebase
+		// firebase.initializeApp(firebaseConfig);
+		// firebase.analytics();
 		var firestore = firebase.storage()
 		var storageRef = firestore.ref()
 
 		request('GET', 'http://localhost:8080/fetchcases').then(function (res) {
 			console.log(res.body)
-			if(res.body == 'no cases')
-			return
+			if (res.body == 'no cases')
+				return
 
 			var cases = JSON.parse(res.body);
 			var keys = Object.keys(cases)
@@ -258,24 +280,67 @@
 			for (var i = 0; i < keys.length; i++) {
 				// console.log(cases[keys[i]])
 				console.log('key:' + keys[i])
-				var registered
-				if (keys[i] == 'emergency')
-					registered = 0
-				else
-					registered = 1
+				// var registered
+				// if (keys[i] == 'emergency')
+				// 	registered = 0
+				// else
+				// 	registered = 1
 
 
 				var obj = cases[keys[i]]
 				var obj_keys = Object.keys(obj)
 				for (var j = 0; j < obj_keys.length; j++) {
+					var phone
 					// console.log('obj_key'+obj[obj_keys[j]])
 					var file_name = obj[obj_keys[j]].filename
-					console.log('inside j loop' + j)
+
 					var location_ = obj[obj_keys[j]]['location']
+
 					var description = obj[obj_keys[j]].description
+					console.log('inside j loop' + j)
 					var status = obj[obj_keys[j]].status
+					console.log('inside j loop' + j)
+					var pname = obj[obj_keys[j]].person_name
+					console.log('inside j loop' + j)
+
+					var aadhar = obj[obj_keys[j]].aadhar
+					console.log(aadhar)
+					console.log('inside j loop' + j)
+					// console.log(aadhar)
+					// console.log('Aadhar user:'+usertree[aadhar]['phone'])
+
+					var registered
+					if (keys[i] == 'emergency'){
+						registered = 0
+						var phone = obj[obj_keys[j]].phone
+					}
+						
+					else{
+						registered = 1
+						var phone = usertree[aadhar]['phone']
+					}
+						
+
+					
+					console.log('inside j loop' + j)
+					// console.log('Phone:'+phone)
+					// var req = new XMLHttpRequest()
+					// req.open("POST", 'http://localhost:8080/fetchphone', true)
+					// req.setRequestHeader("Content-Type", "application/json");
+					// var data = JSON.stringify({ 'aadhar':aadhar })
+					// req.onreadystatechange = (function () {
+					// 	if (req.readyState === 4 && req.status === 200) {
+					// 		var resp = req.responseText
+					// 		console.log(resp)
+					// 		phone = resp
+					// 		showNotice(file_name, location_, description, registered, status, obj_keys[j], pname,phone)
+					// 	}
+					// })
+					// console.log(data)
+					// req.send(data)
+
+					showNotice(file_name, location_, description, registered, status, obj_keys[j], pname, phone)
 					// showNotice(file_name, location_, description, keys[i], status, obj_keys[j])
-					showNotice(file_name, location_, description, registered, status, obj_keys[j])
 				}
 
 				// var file_name = notices[keys[i]].file_name
@@ -288,7 +353,7 @@
 			// console.log("Number of keys:"+Object.keys(json).length)
 		})
 
-		function showNotice(file_name, location_, description, registered, status, case_number) {
+		function showNotice(file_name, location_, description, registered, status, case_number, pname, phone) {
 			console.log('Inside shownotice:' + file_name + "," + location_ + "," + registered)
 			var hr_ = document.createElement('hr')
 			hr_.className = 'invis'
@@ -301,9 +366,15 @@
 			var div3 = document.createElement('div')
 			div3.className = 'icon-wrapper wow fadeIn'
 			div2.appendChild(div3)
+			var per_name = document.createElement('h3')
+			per_name.innerHTML = 'Uploaded by: ' + pname
+			div3.appendChild(per_name)
 			var h3 = document.createElement('h3')
 			h3.innerHTML = 'Location: ' + location_
 			div3.appendChild(h3)
+			var ph = document.createElement('h3')
+			ph.innerHTML = 'Contact: ' + phone
+			div3.appendChild(ph)
 
 			//accept and reject buttons
 			var div4 = document.createElement('div')
