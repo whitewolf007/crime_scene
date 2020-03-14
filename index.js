@@ -4,6 +4,7 @@ var app = express()
 var fs = require('fs')
 var path = require('path')
 var admin = require('firebase-admin')
+var cors = require('cors')
 // var formidable = require('formidable')
 
 var serviceAccount = require('./serviceAccount.json')
@@ -14,13 +15,32 @@ var serviceAccount = require('./serviceAccount.json')
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://crime-scene-6af89.firebaseio.com"
-  });
+});
 var database = admin.database()
 var currentuser
 
 // app.engine('.html',require('ejs').__express)
 // app.set('views', __dirname + '/views')
 // app.set('view engine', 'html')
+// app.use(function (req, res, next) {
+
+//     // Website you wish to allow to connect
+//     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
+
+//     // Request methods you wish to allow
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+//     // Request headers you wish to allow
+//     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+//     // Set to true if you need the website to include cookies in the requests sent
+//     // to the API (e.g. in case you use sessions)
+//     res.setHeader('Access-Control-Allow-Credentials', true);
+
+//     // Pass to next layer of middleware
+//     next();
+// });
+app.use(cors({origin:'*'}))
 app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use(express.json())
 
@@ -84,12 +104,12 @@ app.get('/upload_cases', function (req, res) {
     ret.pipe(res);
 })
 
-app.get('/fetchusertree',function(req,res){
+app.get('/fetchusertree', function (req, res) {
     var db_path = '/users'
-    database.ref(db_path).once('value').then(function(snap){
+    database.ref(db_path).once('value').then(function (snap) {
         var data = snap.val()
         res.send(data)
-        console.log("USertree:"+data)
+        console.log("USertree:" + data)
     })
 })
 
@@ -97,7 +117,7 @@ app.get('/fetchcases', function (req, res) {
     var db_path = '/user_uploads'
     database.ref(db_path).once('value').then(function (snap) {
         var data = snap.val()
-        if(data == null){
+        if (data == null) {
             res.send("no cases")
             return
         }
@@ -113,7 +133,7 @@ app.get('/fetchcases', function (req, res) {
 })
 
 app.get('/fetchcases_individual', function (req, res) {
-    var db_path = '/cases_tree/'+currentuserid
+    var db_path = '/cases_tree/' + currentuserid
     database.ref(db_path).once('value').then(function (snap) {
         var data = snap.val()
         var keys = Object.keys(data)
@@ -126,12 +146,12 @@ app.get('/fetchcases_individual', function (req, res) {
     })
 })
 
-app.get('/fetchnotices',function(req,res){
+app.get('/fetchnotices', function (req, res) {
     var db_path = '/notice'
-    database.ref(db_path).once('value').then(function(snap){
+    database.ref(db_path).once('value').then(function (snap) {
         var data = snap.val()
-        if(data == null)
-        return
+        if (data == null)
+            return
         var keys = Object.keys(data)
         var responsedata = new Object
         for (var i = 0; i < keys.length; i++) {
@@ -146,9 +166,9 @@ app.get('/fetchcurrentuser', function (req, res) {
     res.send(currentuser)
 })
 
-app.get('/fetchusers',function(req,res){
+app.get('/fetchusers', function (req, res) {
     var db_path = '/login'
-    database.ref(db_path).once('value').then(function(snap){
+    database.ref(db_path).once('value').then(function (snap) {
         var data = snap.val()
         var datakeys = Object.keys(data)
         console.log(datakeys.length)
@@ -156,19 +176,19 @@ app.get('/fetchusers',function(req,res){
     })
 })
 
-app.get('/my_cases_user',function(req,res){
+app.get('/my_cases_user', function (req, res) {
     var ret = fs.createReadStream(__dirname + '/views/my_cases_user.html', 'utf-8');
     res.writeHead(200, { 'Content-Type': 'text/html' })
     ret.pipe(res);
 })
 
-app.get('/info_zone',function(req,res){
+app.get('/info_zone', function (req, res) {
     var ret = fs.createReadStream(__dirname + '/views/information_zone.html', 'utf-8');
     res.writeHead(200, { 'Content-Type': 'text/html' })
     ret.pipe(res);
 })
 
-app.get('/info_zone_user',function(req,res){
+app.get('/info_zone_user', function (req, res) {
     var ret = fs.createReadStream(__dirname + '/views/information_zone_user.html', 'utf-8');
     res.writeHead(200, { 'Content-Type': 'text/html' })
     ret.pipe(res);
@@ -340,9 +360,9 @@ app.post('/upload', function (req, res) {
                     tree_key++
                     console.log(tree_key)
                 }
-                db_path = db_path+'/'+tree_key
-                up_data = { 'location': req.body.up_location, 'filename': req.body.filename, 'description': req.body.description, 'aadhar': aadhar, 'date': up_date, 'person_name': username, 'status': 'pending','case_number':'case_'+count }
-                console.log("Data to be uploaded:"+up_data)
+                db_path = db_path + '/' + tree_key
+                up_data = { 'location': req.body.up_location, 'filename': req.body.filename, 'description': req.body.description, 'aadhar': aadhar, 'date': up_date, 'person_name': username, 'status': 'pending', 'case_number': 'case_' + count }
+                console.log("Data to be uploaded:" + up_data)
                 database.ref(db_path).update(up_data).then(function (onupdate) {
                     console.log('cases tree updated')
                 })
@@ -375,7 +395,7 @@ app.post('/upload', function (req, res) {
             // data_len++
             // console.log(data_len)
 
-            var up_data = { 'location': locn, 'filename': filename, 'description': desc, 'aadhar': aadhar, 'date': up_date, 'person_name': name, 'status': 'pending','phone':ph }
+            var up_data = { 'location': locn, 'filename': filename, 'description': desc, 'aadhar': aadhar, 'date': up_date, 'person_name': name, 'status': 'pending', 'phone': ph }
             db_path = db_path + "case_" + count
             console.log(db_path)
             database.ref(db_path).update(up_data).then(function (snap) {
@@ -405,30 +425,30 @@ app.post('/upload', function (req, res) {
     // }
 })
 
-app.post('/acceptcase',function(req,res){
+app.post('/acceptcase', function (req, res) {
     var params = req.body
-    var db_path,db_path2
-    if(params.registered == 0){
-        db_path = '/user_uploads/emergency/'+params.case_number
-        
+    var db_path, db_path2
+    if (params.registered == 0) {
+        db_path = '/user_uploads/emergency/' + params.case_number
+
     }
-    else if(params.registered == 1){
-        db_path = '/user_uploads/registered_user/'+params.case_number
+    else if (params.registered == 1) {
+        db_path = '/user_uploads/registered_user/' + params.case_number
         db_path2 = '/cases_tree'
-        database.ref(db_path2).once('value').then(function(snap){
+        database.ref(db_path2).once('value').then(function (snap) {
             var users = snap.val()
             var user_keys = Object.keys(users)
-            for(var i = 0; i<user_keys.length; i++){
-                console.log('User tree:'+user_keys[i])
+            for (var i = 0; i < user_keys.length; i++) {
+                console.log('User tree:' + user_keys[i])
                 var cases = users[user_keys[i]]
                 var cases_keys = Object.keys(cases)
-                for(var j=0; j<cases_keys.length;j++){
-                    console.log('Status:'+cases[cases_keys[j]].status)
-                    if(cases[cases_keys[j]].case_number == params.case_number){
+                for (var j = 0; j < cases_keys.length; j++) {
+                    console.log('Status:' + cases[cases_keys[j]].status)
+                    if (cases[cases_keys[j]].case_number == params.case_number) {
                         cases[cases_keys[j]].status = 'ongoing'
 
                         users[user_keys[i]][cases_keys[j]].status = 'ongoing'
-                        database.ref(db_path2).update(users).then(function(onupdate){
+                        database.ref(db_path2).update(users).then(function (onupdate) {
                             console.log("FIELD CHANGED")
                         })
                     }
@@ -437,36 +457,36 @@ app.post('/acceptcase',function(req,res){
 
         })
     }
-    var status = {'status':'ongoing'}
-    database.ref(db_path).update(status).then(function(onupdate){
+    var status = { 'status': 'ongoing' }
+    database.ref(db_path).update(status).then(function (onupdate) {
         res.send("updated status")
     })
 })
 
-app.post('/rejectcase',function(req,res){
+app.post('/rejectcase', function (req, res) {
     var params = req.body
-    var db_path,db_path2
-    if(params.registered == 0){
-        db_path = '/user_uploads/emergency/'+params.case_number
-        
+    var db_path, db_path2
+    if (params.registered == 0) {
+        db_path = '/user_uploads/emergency/' + params.case_number
+
     }
-    else if(params.registered == 1){
-        db_path = '/user_uploads/registered_user/'+params.case_number
+    else if (params.registered == 1) {
+        db_path = '/user_uploads/registered_user/' + params.case_number
         db_path2 = '/cases_tree'
-        database.ref(db_path2).once('value').then(function(snap){
+        database.ref(db_path2).once('value').then(function (snap) {
             var users = snap.val()
             var user_keys = Object.keys(users)
-            for(var i = 0; i<user_keys.length; i++){
-                console.log('User tree:'+user_keys[i])
+            for (var i = 0; i < user_keys.length; i++) {
+                console.log('User tree:' + user_keys[i])
                 var cases = users[user_keys[i]]
                 var cases_keys = Object.keys(cases)
-                for(var j=0; j<cases_keys.length;j++){
-                    console.log('Status:'+cases[cases_keys[j]].status)
-                    if(cases[cases_keys[j]].case_number == params.case_number){
+                for (var j = 0; j < cases_keys.length; j++) {
+                    console.log('Status:' + cases[cases_keys[j]].status)
+                    if (cases[cases_keys[j]].case_number == params.case_number) {
                         cases[cases_keys[j]].status = 'rejected'
 
                         users[user_keys[i]][cases_keys[j]].status = 'rejected'
-                        database.ref(db_path2).update(users).then(function(onupdate){
+                        database.ref(db_path2).update(users).then(function (onupdate) {
                             console.log("FIELD CHANGED")
                         })
                     }
@@ -475,36 +495,36 @@ app.post('/rejectcase',function(req,res){
 
         })
     }
-    var status = {'status':'rejected'}
-    database.ref(db_path).update(status).then(function(onupdate){
+    var status = { 'status': 'rejected' }
+    database.ref(db_path).update(status).then(function (onupdate) {
         res.send("updated status")
     })
 })
 
-app.post('/closecase',function(req,res){
+app.post('/closecase', function (req, res) {
     var params = req.body
-    var db_path,db_path2
-    if(params.registered == 0){
-        db_path = '/user_uploads/emergency/'+params.case_number
-        
+    var db_path, db_path2
+    if (params.registered == 0) {
+        db_path = '/user_uploads/emergency/' + params.case_number
+
     }
-    else if(params.registered == 1){
-        db_path = '/user_uploads/registered_user/'+params.case_number
+    else if (params.registered == 1) {
+        db_path = '/user_uploads/registered_user/' + params.case_number
         db_path2 = '/cases_tree'
-        database.ref(db_path2).once('value').then(function(snap){
+        database.ref(db_path2).once('value').then(function (snap) {
             var users = snap.val()
             var user_keys = Object.keys(users)
-            for(var i = 0; i<user_keys.length; i++){
-                console.log('User tree:'+user_keys[i])
+            for (var i = 0; i < user_keys.length; i++) {
+                console.log('User tree:' + user_keys[i])
                 var cases = users[user_keys[i]]
                 var cases_keys = Object.keys(cases)
-                for(var j=0; j<cases_keys.length;j++){
-                    console.log('Status:'+cases[cases_keys[j]].status)
-                    if(cases[cases_keys[j]].case_number == params.case_number){
+                for (var j = 0; j < cases_keys.length; j++) {
+                    console.log('Status:' + cases[cases_keys[j]].status)
+                    if (cases[cases_keys[j]].case_number == params.case_number) {
                         cases[cases_keys[j]].status = 'closed'
 
                         users[user_keys[i]][cases_keys[j]].status = 'closed'
-                        database.ref(db_path2).update(users).then(function(onupdate){
+                        database.ref(db_path2).update(users).then(function (onupdate) {
                             console.log("FIELD CHANGED")
                         })
                     }
@@ -513,8 +533,8 @@ app.post('/closecase',function(req,res){
 
         })
     }
-    var status = {'status':'closed'}
-    database.ref(db_path).update(status).then(function(onupdate){
+    var status = { 'status': 'closed' }
+    database.ref(db_path).update(status).then(function (onupdate) {
         res.send("updated status")
     })
 })
